@@ -8,16 +8,22 @@ Route::group([
     Route::resource('user', 'UserController');
     Route::resource('role', 'RoleController');
 
-    Route::resource('clients','ClientController');
-
-    Route::resource('cases','CasesController');
-
+   
     Route::resource('permission', 'PermissionController');
     Route::resource('menu', 'MenuController')->except([
         'show'
     ]);
 
-   
+
+    Route::resource('clients','ClientController') ->except([
+        'show'
+    ]);
+
+    Route::resource('cases','CasesController')->except([
+        'show'
+    ]);
+
+    Route::resource('clients.store', 'ClientController');
 
 
     Route::resource('menu.item', 'MenuItemController');

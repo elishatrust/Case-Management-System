@@ -71,6 +71,7 @@ function destroy(id) {
       >
         {{ $page.props.flash.message }}
       </NotificationBar>
+
       <CardBox class="mb-6" has-table>
         <form @submit.prevent="form.get(route('user.index'))">
           <div class="py-2 flex">
@@ -99,6 +100,7 @@ function destroy(id) {
           </div>
         </form>
       </CardBox>
+      
       <CardBox class="mb-6" has-table>
         <table>
           <thead>

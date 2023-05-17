@@ -4,7 +4,11 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 
 
-use Illuminate\Http\Request;
+//use Illuminate\Http\Request;
+
+use App\Illuminate\Http\Requests\ClientRequest;
+
+
 
 use App\Models\Client;
 use Illuminate\Support\Facades\Auth;
@@ -62,19 +66,20 @@ class ClientController extends Controller
 
     public function create()
     {
-        $clients = Client::all()->pluck("name","phone","email","address","case_id");
-
-        return Inertia::render('Admin/Clients/Create', [
-            'clients' => $clients,
-        ]);
+        return Inertia::render('Admin/Clients/Create');
     }
 
 
-    // public function store(StoreUserRequest $request, CreateUser $createUser)
-    // {
-    //     $createUser->handle((object) $request->all());
+    public function store(ClientRequest $request, CreateUser $createUser)
+    {
+        Client::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'phone' => $request->phone,
+            'address' => $request->address,
+        ]);
 
-    //     return redirect()->route('client.index')
-    //                     ->with('message', __('User created successfully.'));
-    // }
+        return redirect()->route('client.index')
+                        ->with('message', 'Client created successfully.');
+    }
 }

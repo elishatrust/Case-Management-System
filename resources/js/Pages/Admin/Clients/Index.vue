@@ -49,7 +49,6 @@ function destroy(id) {
   <LayoutAuthenticated>
     <Head title="Clients" />
 
-
     <SectionMain>
 
         <SectionTitleLineWithButton
@@ -59,7 +58,8 @@ function destroy(id) {
       >
 
       <BaseButton 
-        
+           v-if="can.delete"
+          :route-name="route('clients.create')"
           :icon="mdiPlus"
           label="Add"
           color="info"
@@ -69,9 +69,17 @@ function destroy(id) {
 
     </SectionTitleLineWithButton>
 
+    <NotificationBar
+        v-if="$page.props.flash.message"
+        color="success"
+        :icon="mdiAlertBoxOutline"
+      >
+        {{ $page.props.flash.message }}
+      </NotificationBar>
+
 
     <CardBox class="mb-6" has-table>
-        <form>
+        <form @submit.prevent="form.get(route('client.index'))">
           <div class="py-2 flex">
             <div class="flex pl-4">
               <input
@@ -96,6 +104,108 @@ function destroy(id) {
             </div>
           </div>
         </form>
+      </CardBox>
+
+
+      <CardBox class="mb-6" has-table>
+        <table>
+          <thead>
+            <tr>
+              <th>
+                <Sort label="Name" attribute="name" />
+              </th>
+              <th>
+                <Sort label="Email" attribute="email" />
+              </th>
+
+              <th>
+                <Sort label="Phone" attribute="phone" />
+              </th>
+
+              <th>
+                <Sort label="Address" attribute="address" />
+              </th>
+
+              <th>
+                <Sort label="Case ID" attribute="case_id" />
+              </th>
+
+              <th v-if="can.edit || can.delete">Actions</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr v-for="clients in clients.data" :key="clients.id">
+              <td data-label="Name">
+                <Link
+                  
+                  class="
+                    no-underline
+                    hover:underline
+                    text-cyan-600
+                    dark:text-cyan-400
+                  "
+                >
+                  {{ clients.name }}
+                </Link>
+              </td>
+
+              <td data-label="Email">
+                {{ clients.email }}
+              </td>
+
+              <td data-label="Phone">
+                {{ clients.phone }}
+              </td>
+
+              <td data-label="Address">
+                {{ clients.address }}
+              </td>
+
+              <td data-label="Case ID">
+                {{ clients.case_id }}
+              </td>
+
+
+
+              <td
+                v-if="can.edit || can.delete"
+                class="before:hidden lg:w-1 whitespace-nowrap"
+              >
+                <BaseButtons type="justify-start lg:justify-end" no-wrap>
+
+
+
+                  <!-- <BaseButton
+                    v-if="can.edit"
+                    color="view"
+                    :icon="mdiSquareEditOutline"
+                    small
+                  /> -->
+                  
+
+                  <BaseButton
+                    v-if="can.edit"
+                    color="info"
+                    :icon="mdiSquareEditOutline"
+                    small
+                  />
+
+                  <BaseButton
+                    v-if="can.delete"
+                    color="danger"
+                    :icon="mdiTrashCan"
+                    small
+                    @click="destroy(clients.id)"
+                  />
+                </BaseButtons>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="py-4">
+          <Pagination :data="clients" />
+        </div>
       </CardBox>
 
 

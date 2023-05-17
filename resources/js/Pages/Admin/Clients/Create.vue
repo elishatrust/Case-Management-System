@@ -15,33 +15,26 @@ import BaseDivider from '@/Components/BaseDivider.vue'
 import BaseButton from '@/Components/BaseButton.vue'
 import BaseButtons from '@/Components/BaseButtons.vue'
 
-const props = defineProps({
-  roles: {
-    type: Object,
-    default: () => ({}),
-  }
-})
 
 const form = useForm({
   name: '',
   email: '',
-  password: '',
-  password_confirmation: '',
-  roles: []
+  phone: '',
+  address: '', 
 })
 </script>
 
 <template>
   <LayoutAuthenticated>
-    <Head title="Add user" />
+    <Head title="Register New Client" />
     <SectionMain>
       <SectionTitleLineWithButton
         :icon="mdiAccountKey"
-        title="Add user"
+        title="Register Client"
         main
       >
         <BaseButton
-          :route-name="route('user.index')"
+        :route-name="route('clients.index')"
           :icon="mdiArrowLeftBoldOutline"
           label="Back"
           color="white"
@@ -50,93 +43,85 @@ const form = useForm({
         />
       </SectionTitleLineWithButton>
       <CardBox
-        form
-        @submit.prevent="form.post(route('user.store'))"
-      >
+        form  @submit.prevent="form.post(route('clients.store'))">
         <FormField
-          label="Name"
+          label="Client Name"
           :class="{ 'text-red-400': form.errors.name }"
         >
           <FormControl
-            v-model="form.name"
+          v-model="form.name"
             type="text"
-            placeholder="Enter Name"
+            placeholder="Surname, First Name"
             :error="form.errors.name"
+
           >
             <div class="text-red-400 text-sm" v-if="form.errors.name">
               {{ form.errors.name }}
+
+             
             </div>
           </FormControl>
         </FormField>
 
         <FormField
-          label="Email"
+          label="Email Address"
           :class="{ 'text-red-400': form.errors.email }"
         >
           <FormControl
-            v-model="form.email"
+          v-model="form.email"
             type="text"
             placeholder="Enter Email"
             :error="form.errors.email"
           >
             <div class="text-red-400 text-sm" v-if="form.errors.email">
               {{ form.errors.email }}
+             
             </div>
           </FormControl>
         </FormField>
 
         <FormField
-          label="Password"
-          :class="{ 'text-red-400': form.errors.password }"
+          label="Phone Number"
+          :class="{ 'text-red-400': form.errors.phone }"
         >
           <FormControl
-            v-model="form.password"
-            type="password"
-            placeholder="Enter Password"
-            :error="form.errors.password"
+            type="number"
+            placeholder="Phone Number eg: 0712XXXXX"
+            :error="form.errors.phone"
+
           >
-            <div class="text-red-400 text-sm" v-if="form.errors.password">
-              {{ form.errors.password }}
+            <div class="text-red-400 text-sm" v-if="form.errors.phone">
+              {{ form.errors.phone }}
+             
             </div>
           </FormControl>
         </FormField>
 
         <FormField
-          label="Password Confirmation"
-          :class="{ 'text-red-400': form.errors.password }"
+          label="Physical Address"
+          :class="{ 'text-red-400': form.errors.address }"
         >
           <FormControl
-            v-model="form.password_confirmation"
-            type="password"
-            placeholder="Enter Password Confirmation"
-            :error="form.errors.password"
+          :error="form.errors.address"
+            type="text"
+            placeholder="Enter Home Address eg: Tabata, Matumbi"
+           
           >
-            <div class="text-red-400 text-sm" v-if="form.errors.password">
-              {{ form.errors.password }}
+            <div class="text-red-400 text-sm" v-if="form.errors.address">
+              {{ form.errors.address }}
             </div>
           </FormControl>
         </FormField>
 
         <BaseDivider />
 
-        <FormField
-          label="Roles"
-          wrap-body
-        >
-          <FormCheckRadioGroup
-            v-model="form.roles"
-            name="roles"
-            is-column
-            :options="props.roles"
-          />
-        </FormField>
 
         <template #footer>
           <BaseButtons>
             <BaseButton
               type="submit"
               color="info"
-              label="Submit"
+              label="Register Now"
               :class="{ 'opacity-25': form.processing }"
               :disabled="form.processing"
             />

@@ -40,7 +40,7 @@ const formDelete = useForm({})
 
 function destroy(id) {
   if (confirm("Are you sure you want to delete?")) {
-    formDelete.delete(route("client.destroy", id))
+    formDelete.delete(route("case.destroy", id))
   }
 }
 </script>
@@ -59,9 +59,10 @@ function destroy(id) {
       >
 
       <BaseButton 
-        
+      v-if="can.delete"
+          :route-name="route('cases.create')"
           :icon="mdiPlus"
-          label="Add"
+          label="Register"
           color="info"
           rounded-full
           small
