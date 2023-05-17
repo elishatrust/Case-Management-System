@@ -5,9 +5,7 @@
 ## Installation
 
 - Create a new MYSQL database and update database details in `.env` file
-- `php artisan vendor:publish --provider="BalajiDharma\LaravelAdminCore\AdminCoreServiceProvider"`
-- `php artisan vendor:publish --provider="BalajiDharma\LaravelMenu\MenuServiceProvider"`
-- `php artisan migrate --seed --seeder=AdminCoreSeeder`
+- Upload SQL file attached to your Database
 - `npm install`
 - `npm run dev`
 - `php artisan serve`
@@ -16,6 +14,10 @@
 ###### Super Admin Login
 - Email - superadmin@example.com
 - Password - password
+
+###### Lawyer Login
+- Email - test@example.com
+- Password - 12345678
 
 #### Admin Configuration:
 
