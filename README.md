@@ -1,5 +1,5 @@
 <h1 align="center">UBX Case Management System</h1>
-
+###### Installation
 - Create a new MYSQL database and update database details in `.env` file
 - `php artisan vendor:publish --provider="BalajiDharma\LaravelAdminCore\AdminCoreServiceProvider"`
 - `php artisan vendor:publish --provider="BalajiDharma\LaravelMenu\MenuServiceProvider"`
