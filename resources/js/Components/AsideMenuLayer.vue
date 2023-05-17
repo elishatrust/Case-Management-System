@@ -51,7 +51,7 @@ const menuClick = (event, item) => {
         class="flex flex-row h-14 items-center justify-between dark:bg-slate-900"
       >
         <div class="text-center flex-1 lg:text-left lg:pl-6 xl:text-center xl:pl-0">
-          <b class="font-black">UBX - Case Mgt</b>
+          <b class="font-black">One</b>
         </div>
         <button 
           class="hidden lg:inline-block xl:hidden p-3"

@@ -8,7 +8,7 @@ const year = computed(() => new Date().getFullYear())
 </script>
 
 <template>
-  <!-- <footer class="py-2 px-6">
+  <footer class="py-2 px-6">
     <BaseLevel :class="containerMaxW">
       <div class="text-center md:text-left">
         <b>&copy;{{ year }}, <a
@@ -27,15 +27,5 @@ const year = computed(() => new Date().getFullYear())
         </a>
       </div>
     </BaseLevel>
-  </footer> -->
-
-
-  <footer class="flex justify-between mt-4 px-8 py-4 text-gray-500 border-t-2 text-xs font-bold bg-white">
-    <div class="plex space-x-4">
-      <a href="#" class="hover:text-indigo-600">Developed by Salim Mbisse</a>
-     
-    </div>
-    <div>&copy; {{ new Date().getFullYear() }} UBX - Case Management System</div>
   </footer>
-
 </template>

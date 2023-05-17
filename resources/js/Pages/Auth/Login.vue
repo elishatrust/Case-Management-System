@@ -63,7 +63,7 @@ const submit = () => {
         </NotificationBarInCard>
 
         <FormField
-          label="Email Address"
+          label="Email"
           label-for="email"
           help="Please enter your email"
         >

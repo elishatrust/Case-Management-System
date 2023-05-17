@@ -24,7 +24,7 @@ import CardBoxTransaction from '@/Components/CardBoxTransaction.vue'
 import CardBoxClient from '@/Components/CardBoxClient.vue'
 import LayoutAuthenticated from '@/Layouts/LayoutAuthenticated.vue'
 import SectionTitleLineWithButton from '@/Components/SectionTitleLineWithButton.vue'
-// import SectionBannerStarOnGitHub from '@/Components/SectionBannerStarOnGitHub.vue'
+import SectionBannerStarOnGitHub from '@/Components/SectionBannerStarOnGitHub.vue'
 const chartData = ref(null)
 const fillChartData = () => {
   chartData.value = chartConfig.sampleChartData()
@@ -46,7 +46,21 @@ const transactionBarItems = computed(() => mainStore.history)
   <LayoutAuthenticated>
     <Head title="Dashboard" />
     <SectionMain>
-      
+      <SectionTitleLineWithButton
+        :icon="mdiChartTimelineVariant"
+        title="Overview"
+        main
+      >
+        <BaseButton
+          href="https://github.com/balajidharma/laravel-vue-admin-panel"
+          target="_blank"
+          :icon="mdiGithub"
+          label="Star on GitHub"
+          color="contrast"
+          rounded-full
+          small
+        />
+      </SectionTitleLineWithButton>
       
       <div class="grid grid-cols-1 gap-6 lg:grid-cols-3 mb-6">
         <CardBoxWidget
@@ -54,7 +68,7 @@ const transactionBarItems = computed(() => mainStore.history)
           trend-type="up"
           color="text-emerald-500"
           :icon="mdiAccountMultiple"
-          :number="120"
+          :number="512"
           label="Clients"
         />
         <CardBoxWidget
@@ -63,7 +77,8 @@ const transactionBarItems = computed(() => mainStore.history)
           color="text-blue-500"
           :icon="mdiCartOutline"
           :number="7770"
-          label="Cases"
+          prefix="$"
+          label="Sales"
         />
         <CardBoxWidget
           trend="Overflow"
@@ -71,21 +86,45 @@ const transactionBarItems = computed(() => mainStore.history)
           color="text-red-500"
           :icon="mdiChartTimelineVariant"
           :number="256"
-          label="Pending Cases"
+          suffix="%"
+          label="Performance"
         />
       </div>
 
-     
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+        <div class="flex flex-col justify-between">
+          <CardBoxTransaction
+            v-for="(transaction,index) in transactionBarItems"
+            :key="index"
+            :amount="transaction.amount"
+            :date="transaction.date"
+            :business="transaction.business"
+            :type="transaction.type"
+            :name="transaction.name"
+            :account="transaction.account"
+          />
+        </div>
+        <div class="flex flex-col justify-between">
+          <CardBoxClient
+            v-for="client in clientBarItems"
+            :key="client.id"
+            :name="client.name"
+            :login="client.login"
+            :date="client.created"
+            :progress="client.progress"
+          />
+        </div>
+      </div>
 
-  
+      <SectionBannerStarOnGitHub />
 
       <SectionTitleLineWithButton
         :icon="mdiChartPie"
-        title="Case Overview"
+        title="Trends overview"
       />
 
       <CardBox
-        title="This year"
+        title="Performance"
         :icon="mdiFinance"
         :header-icon="mdiReload"
         class="mb-6"
@@ -99,20 +138,25 @@ const transactionBarItems = computed(() => mainStore.history)
         </div>
       </CardBox>
 
-      <!-- <SectionTitleLineWithButton
+      <SectionTitleLineWithButton
         :icon="mdiAccountMultiple"
         title="Clients"
-      /> -->
+      />
 
-     
+      <NotificationBar
+        color="info"
+        :icon="mdiMonitorCellphone"
+      >
+        <b>Responsive table.</b> Collapses on mobile
+      </NotificationBar>
 
-      <!-- <CardBox
+      <CardBox
         :icon="mdiMonitorCellphone"
         title="Responsive table"
         has-table
       >
         <TableSampleClients />
-      </CardBox> -->
+      </CardBox>
     </SectionMain>
   </LayoutAuthenticated>
 </template>
