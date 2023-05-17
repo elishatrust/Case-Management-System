@@ -47,14 +47,14 @@ function destroy(id) {
 
 <template>
   <LayoutAuthenticated>
-    <Head title="Clients" />
+    <Head title="Cases" />
 
 
     <SectionMain>
 
         <SectionTitleLineWithButton
         :icon="mdiAccountKey"
-        title="All Clients"
+        title="All Registered Cases"
         main
       >
 

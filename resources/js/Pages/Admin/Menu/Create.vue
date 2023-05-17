@@ -27,7 +27,7 @@ const form = useForm({
     <SectionMain>
       <SectionTitleLineWithButton
         :icon="mdiMenu"
-        title="Add menu"
+        title="New menu"
         main
       >
         <BaseButton
