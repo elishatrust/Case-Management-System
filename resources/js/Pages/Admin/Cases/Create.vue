@@ -42,23 +42,21 @@ const form = useForm({
           small
         />
       </SectionTitleLineWithButton>
-      <CardBox
-        form >
+
+      <CardBox   form>
         <FormField
           label="Client Name"
-          
-        >
+          >
+
+       
+
           <FormControl
          
             type="text"
             placeholder="Surname, First Name"
-            
-
           >
             <div class="text-red-400 text-sm" >
-            
-
-             
+  
             </div>
           </FormControl>
         </FormField>
